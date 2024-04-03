@@ -162,7 +162,7 @@ public class Board {
     // square is a mine
     // square is a number
     // square is flagged
-    if (square.getRevealed() || square.getMine() || square.getFlagged()){
+    if (square.getRevealed() || square.getMinesAround() > 0 || square.getMine() || square.getFlagged()){
       return;
     }
 
