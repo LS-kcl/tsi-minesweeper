@@ -1,8 +1,8 @@
 public class Square {
-  boolean flagged;
-  boolean isMine;
-  boolean revealed;
-  int minesAround;
+  private boolean flagged;
+  private boolean isMine;
+  private boolean revealed;
+  private int minesAround;
 
   public Square() {
     // Initialise to defaults
@@ -30,6 +30,40 @@ public class Square {
 
   public boolean getMine() {
     return isMine;
+  }
+
+  public boolean getRevealed() {
+    return revealed;
+  }
+
+  public void revealSquare() {
+    revealed = true;
+  }
+
+  public int getMinesAround() {
+    return minesAround;
+  }
+
+  public boolean getFlagged() {
+    return flagged;
+  }
+
+  /*
+   * A method to return a command line
+   * indication of what it looks like on the
+   * board
+   */
+  public String getVisible() {
+    if (flagged) {
+      return "F";
+    }
+
+    if (revealed){
+      return "" + minesAround;
+    }
+
+    // All else fails (not revealed or flagged)
+    return "X";
   }
 
   public void setMine(boolean value) {

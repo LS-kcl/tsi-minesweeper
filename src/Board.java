@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -7,18 +8,23 @@ public class Board {
   private Random rng = new Random();
 
   public Board(int size) {
-    self.size = size;
+    this.size = size;
 
     // For now, mines take up 20% of board space (i.e. 1/5 squares)
-    self.numOfMines = size * size / 5;
+    this.numOfMines = size * size / 5;
 
-    // Initialise board
+    // Initialise board and fill with default square values
     board = new Square[size][size];
+    for (int col=0; col<size; col++){
+      for (int row=0; row < size; row++) {
+        board[col][row] = new Square();
+      }
+    }
   }
 
   public void printBoard() {
     // Print first header:
-    System.out.print(" ");
+    System.out.print("  ");
     for (int i = 0; i < size; i++) {
       System.out.print(i + " ");
     }
@@ -27,7 +33,7 @@ public class Board {
     for (int col=0; col<size; col++){
       System.out.print(col + " ");
       for (int row=0; row < size; row++) {
-        System.out.print(board[row][col].minesAround + " ");
+        System.out.print(board[row][col].getVisible() + " ");
       }
       System.out.println(""); // New line for next row
     }
@@ -58,7 +64,7 @@ public class Board {
     Square square = board[row][col];
     
     // Do nothing if flagged
-    if (square.flagged){
+    if (square.getFlagged()){
       System.out.println("You cannot check a square you have flagged!");
       return false;
     }
