@@ -44,6 +44,10 @@ public class Square {
     return minesAround;
   }
 
+  public void setMinesAround(int val) {
+    minesAround = val;
+  }
+
   public boolean getFlagged() {
     return flagged;
   }
@@ -54,6 +58,11 @@ public class Square {
    * board
    */
   public String getVisible() {
+    // Mine always returns as blank
+    if (isMine){
+      return "X";
+    }
+
     if (flagged) {
       return "F";
     }

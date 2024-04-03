@@ -11,6 +11,7 @@ public class Game {
 
     Board board = new Board(boardSize);
     board.generateBoard();
+    board.updateBoardNumbers();
 
     boolean running = true;
     // Placeholder while true

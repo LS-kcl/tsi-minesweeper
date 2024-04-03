@@ -54,7 +54,33 @@ public class Board {
         minesLeft--;
       }
     }
-    
+  }
+
+  /*
+   * Goes through all squares on the board, if mine found, increment number
+   * of all squares around it
+   */
+  public void updateBoardNumbers() {
+    // Loop through all squares
+    for (int col=0; col<size; col++){
+      for (int row=0; row < size; row++) {
+        // If the square has a mine
+        if (board[col][row].getMine()){
+          // increment number values of all adjacent squares
+          for (int i = col-1; i <= col+1; i++) {
+            // Check bounds
+            if (i >= 0 && i < size){
+              for (int j = row-1; j <= row+1; j++) {
+                if (j >= 0 && j < size){
+                  int prevVal = board[i][j].getMinesAround();
+                  board[i][j].setMinesAround(prevVal+1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   /*
@@ -104,17 +130,39 @@ public class Board {
   }
 
   /*
+   * Will reveal the current square, then call the cascading reveals
+   */
+  public void revealSquares(int row, int col) {
+    Square square = board[row][col];
+    
+    // Reveal square
+    square.revealSquare();
+
+    // Recursively run on adjacent squares for "waterfall effect"
+    for (int i = col-1; i <= col+1; i++) {
+      // Check bounds
+      if (i >= 0 && i < size){
+        for (int j = row-1; j <= row+1; j++) {
+          if (j >= 0 && j < size){
+            revealCascade(i, j);
+          }
+        }
+      }
+    }
+  }
+
+  /*
    * Will reveal the current square, and then cascade try
    * to cascade to other cells nearby
    */
-  public void revealSquares(int row, int col) {
+  public void revealCascade(int row, int col) {
     Square square = board[row][col];
     // Base cases, we stop if:
     // square is already revealed
     // square is a mine
     // square is a number
     // square is flagged
-    if (square.getRevealed() || square.getMine() || square.getMinesAround() > 0 || square.getFlagged()){
+    if (square.getRevealed() || square.getMine() || square.getFlagged()){
       return;
     }
 
@@ -125,7 +173,7 @@ public class Board {
     for (int i = col-1; i <= col+1; i++) {
       // Check bounds
       if (i >= 0 && i < size){
-        for (int j = row-1; j < row+1; j++) {
+        for (int j = row-1; j <= row+1; j++) {
           if (j >= 0 && j < size){
             revealSquares(i, j);
           }
