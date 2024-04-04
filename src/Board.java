@@ -204,7 +204,7 @@ public class Board {
 
     for (int i = rowStart; i <= rowFinish; i++ ) {
         for (int j = colStart; j <= colfinish; j++ ) {
-          Square tarSquare = board[j][i];
+          Square tarSquare = board[i][j];
           if (tarSquare.getFlagged() || tarSquare.getMine()){
             // do not reveal mines or flagged squares
             // do nothing

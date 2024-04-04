@@ -22,17 +22,17 @@ public class Game {
       int col = -1;
       int row = -1;
       do{
-        System.out.println("Enter the column of the square you would like to select");
-        col = InputHelper.getIntInput();
         System.out.println("Enter the row of the square you would like to select");
         row = InputHelper.getIntInput();
+        System.out.println("Enter the column of the square you would like to select");
+        col = InputHelper.getIntInput();
       } while (!isWithinBounds(col, boardSize) || !isWithinBounds(row, boardSize));
 
       String option = "";
       do{
         System.out.println("What would you like to do for square "
-          + "col: " + col + ", "
-          + "row: " + row + "?"
+          + "row: " + row + ", "
+          + "col: " + col + "?"
         );
         System.out.println("F: Flag the square");
         System.out.println("R: Reveal the square");
