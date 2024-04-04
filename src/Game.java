@@ -13,8 +13,10 @@ public class Game {
     board.generateBoard();
     board.updateBoardNumbers();
 
+    boolean hitMine = false;
+
     // While there remains squares to be found
-    while (board.squaresRemaining() > 0) {
+    while (board.squaresRemaining() > 0 && hitMine == false) {
       board.printBoard();
       board.printSquaresRemaining();
       board.printDebuggingBoard();
@@ -30,10 +32,7 @@ public class Game {
 
       String option = "";
       do{
-        System.out.println("What would you like to do for square "
-          + "row: " + row + ", "
-          + "col: " + col + "?"
-        );
+        System.out.printf("What would you like to do for square (%s,%s)%n", row, col);
         System.out.println("F: Flag the square");
         System.out.println("R: Reveal the square");
         option = InputHelper.getStringInput();
@@ -45,7 +44,11 @@ public class Game {
           break;
 
         case "R":
-          board.revealSquares(row, col);
+          // If revealSquares hits a mine
+          if (board.revealSquares(row, col)){
+            System.out.printf("There was a mine at (%s,%s)%n", row, col);
+            hitMine = true;
+          }
           break;
 
         default:
@@ -54,7 +57,12 @@ public class Game {
       }
     }
 
-    System.out.println("You won!");
+    if (!hitMine){
+      System.out.println("You won!");
+    } else {
+      System.out.println("You lost, play again?");
+    }
+    
   }
 
   private boolean isWithinBounds(int val, int maxValExclusive) {
