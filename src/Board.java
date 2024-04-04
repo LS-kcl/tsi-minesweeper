@@ -1,3 +1,4 @@
+import java.sql.SQLInvalidAuthorizationSpecException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -10,8 +11,8 @@ public class Board {
   public Board(int size) {
     this.size = size;
 
-    // For now, mines take up 20% of board space (i.e. 1/5 squares)
-    this.numOfMines = size * size / 5;
+    // For now, mines take up 10% of board space (i.e. 1/10 squares)
+    this.numOfMines = size * size / 10;
 
     // Initialise board and fill with default square values
     board = new Square[size][size];
@@ -131,24 +132,32 @@ public class Board {
 
   /*
    * Will reveal the current square, then call the cascading reveals
+   * returns true if mine revealed, else false
    */
-  public void revealSquares(int row, int col) {
+  public boolean revealSquares(int row, int col) {
     Square square = board[row][col];
     
-    // Reveal square
-    square.revealSquare();
+    // If it was a mine returned, don't cascade:
+    if (square.getMine()) {
+      return true;
+    }
+
+    // Reveal square in cascade
+    revealCascade(row, col);
+
+    return false;
 
     // Recursively run on adjacent squares for "waterfall effect"
-    for (int i = col-1; i <= col+1; i++) {
-      // Check bounds
-      if (i >= 0 && i < size){
-        for (int j = row-1; j <= row+1; j++) {
-          if (j >= 0 && j < size){
-            revealCascade(i, j);
-          }
-        }
-      }
-    }
+    // for (int i = col-1; i <= col+1; i++) {
+    //   // Check bounds
+    //   if (i >= 0 && i < size){
+    //     for (int j = row-1; j <= row+1; j++) {
+    //       if (j >= 0 && j < size){
+    //         revealCascade(i, j);
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   /*
@@ -160,9 +169,10 @@ public class Board {
     // Base cases, we stop if:
     // square is already revealed
     // square is a mine
-    // square is a number
     // square is flagged
-    if (square.getRevealed() || square.getMinesAround() > 0 || square.getMine() || square.getFlagged()){
+
+    // Do not execute on squares already revealed
+    if (square.getRevealed()){
       return;
     }
 
@@ -175,7 +185,18 @@ public class Board {
       if (i >= 0 && i < size){
         for (int j = row-1; j <= row+1; j++) {
           if (j >= 0 && j < size){
-            revealSquares(i, j);
+            Square tarSquare = board[i][j];
+            if (tarSquare.getFlagged() || tarSquare.getMine()){
+              // do not reveal mines or flagged squares
+              // do nothing
+            }else if (tarSquare.getMinesAround() == 0){
+              // if no mines around, cascade around
+              revealCascade(i, j);
+            } else{
+              // This is just a regular number
+              // We reveal if the square is a number, but we don't cascade
+              tarSquare.revealSquare();
+            }
           }
         }
       }

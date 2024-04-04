@@ -31,6 +31,14 @@
         - Case 2: User selects "C", check if mine using checkSquare(), board reveals or user loses
         - Case 3: User selects "F", flag is toggled on chosen square
 
+#### Cascade rules:
+This is implemented using a recursive function:
+- Reveal first square
+- Check all squares around it for "0"s (i.e. no surrounding mines)
+- If there's a zero around, reveal all squares around the zero that are not mines, if the revealed square is also a zero, recursively call on that zero square
+    - recursive call of 
+- Base case is when it's called on a non "0", it reveals the square and returns
+
 #### Classes
 Game:
 - Attributes:
@@ -47,9 +55,10 @@ Board:
     - selectSquare() : void
     - printBoard() : void
     - generateBoard() : void
-    - checkSquare() : void
-    - protectedCheck() : void
+    - checkSquare() : boolean
+    - protectedReveal() : void
     - flagSquare() : void
+    - revealSquares() : void
 
 Square:
 - Attributes:
@@ -59,5 +68,5 @@ Square:
     - minesAround: int
 - Methods:
     - toggleFlag() : void
-    - checkSquare() : void
+    - checkSquare() : boolean
     - peekMine() : boolean
