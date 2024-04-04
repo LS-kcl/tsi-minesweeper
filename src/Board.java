@@ -1,4 +1,3 @@
-import java.sql.SQLInvalidAuthorizationSpecException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -102,6 +101,15 @@ public class Board {
     }
   }
 
+  public void resetBoardNumbers() {
+    for (Square[] nestedList : board){
+      for (Square square : nestedList){
+          // Reset the board number
+          square.setMinesAround(0);
+      }
+    }
+  }
+
   /*
    * Checks if square is a mine, and returns true if it is
    */
@@ -121,7 +129,7 @@ public class Board {
   /*
    * Moves the mine that would be hit to another square
    */
-  public void protectedCheck(int row, int col) {
+  public void safeRevealSquares(int row, int col) {
     Square square = board[row][col];
 
     // If would reveal a mine
@@ -136,11 +144,15 @@ public class Board {
         Square moveTo = board[randCol][randRow];
         // Only place mine if no existing mine
         if (!moveTo.getMine()){
-          square.setMine(true);
+          square.setMine(false);
+          moveTo.setMine(true);
           minePlaced = true;
         }
       }
 
+      // Generate new set of numbers on the board
+      resetBoardNumbers();
+      updateBoardNumbers();
     }
 
     // Perform original reveal

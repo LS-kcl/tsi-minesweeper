@@ -4,6 +4,7 @@ public class Game {
   Board board;
   int boardSize;
   boolean hitMine = false;
+  boolean firstMoveMade = false;
 
   public void run() {
     System.out.println("Welcome to Minesweeper!");
@@ -45,10 +46,15 @@ public class Game {
           break;
 
         case "R":
-          // If revealSquares hits a mine
-          if (board.revealSquares(c.row, c.col)){
-            System.out.printf("There was a mine at (%s,%s)%n", c.row, c.col);
-            hitMine = true;
+          // If first move not made
+          if (!firstMoveMade){
+            board.safeRevealSquares(c.row, c.col);
+            firstMoveMade = true;
+          } else {
+            hitMine = board.revealSquares(c.row, c.col);
+            if (hitMine){
+              System.out.printf("There was a mine at (%s,%s)%n", c.row, c.col);
+            }
           }
           break;
 
