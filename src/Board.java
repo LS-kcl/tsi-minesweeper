@@ -197,27 +197,26 @@ public class Board {
     // Reveal square
     square.revealSquare();
 
-    // Recursively run on adjacent squares for "waterfall effect"
-    for (int i = col-1; i <= col+1; i++) {
-      // Check bounds
-      if (i >= 0 && i < size){
-        for (int j = row-1; j <= row+1; j++) {
-          if (j >= 0 && j < size){
-            Square tarSquare = board[i][j];
-            if (tarSquare.getFlagged() || tarSquare.getMine()){
-              // do not reveal mines or flagged squares
-              // do nothing
-            }else if (tarSquare.getMinesAround() == 0){
-              // if no mines around, cascade around
-              revealCascade(i, j);
-            } else{
-              // This is just a regular number
-              // We reveal if the square is a number, but we don't cascade
-              tarSquare.revealSquare();
-            }
+    int rowStart = Math.max(row-1, 0);
+    int rowFinish = Math.min(row + 1, size-1);
+    int colStart = Math.max(col - 1, 0);
+    int colfinish = Math.min( col + 1, size-1);
+
+    for (int i = rowStart; i <= rowFinish; i++ ) {
+        for (int j = colStart; j <= colfinish; j++ ) {
+          Square tarSquare = board[i][j];
+          if (tarSquare.getFlagged() || tarSquare.getMine()){
+            // do not reveal mines or flagged squares
+            // do nothing
+          }else if (tarSquare.getMinesAround() == 0){
+            // if no mines around, cascade around
+            revealCascade(i, j);
+          } else{
+            // This is just a regular number
+            // We reveal if the square is a number, but we don't cascade
+            tarSquare.revealSquare();
           }
         }
-      }
     }
   }
 

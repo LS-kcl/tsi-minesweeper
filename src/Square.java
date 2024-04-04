@@ -82,7 +82,7 @@ public class Square {
   public String getDebuggingVisible() {
     // Mine always returns as blank
     if (isMine){
-      return "X";
+      return "M";
     }
 
     if (flagged) {
