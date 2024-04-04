@@ -220,6 +220,25 @@ public class Board {
     }
   }
 
+  public void printSquaresRemaining(){
+    System.out.println("There are " + squaresRemaining() + " squares left to find");
+
+  }
+
+  public int squaresRemaining(){
+    int count = 0;
+    for (Square[] nestedList : board){
+      for (Square square : nestedList){
+        // If square is not yet revealed, and is not a mine
+        if (!square.getRevealed() && !square.getMine()){
+          count++;
+        }
+      }
+    }
+    return count;
+
+  }
+
   public void flagSquare(int row, int col) {
     Square square = board[row][col];
     square.toggleFlag();

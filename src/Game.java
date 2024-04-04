@@ -13,10 +13,10 @@ public class Game {
     board.generateBoard();
     board.updateBoardNumbers();
 
-    boolean running = true;
-    // Placeholder while true
-    while (running) {
+    // While there remains squares to be found
+    while (board.squaresRemaining() > 0) {
       board.printBoard();
+      board.printSquaresRemaining();
       board.printDebuggingBoard();
 
       int col = -1;
@@ -29,7 +29,10 @@ public class Game {
       } while (!isWithinBounds(col, boardSize) || !isWithinBounds(row, boardSize));
 
       board.revealSquares(col, row);
+
     }
+
+    System.out.println("You won!");
   }
 
   private boolean isWithinBounds(int val, int maxValExclusive) {
