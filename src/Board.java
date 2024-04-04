@@ -40,6 +40,24 @@ public class Board {
     }
   }
 
+  public void printDebuggingBoard() {
+    System.out.println("### DEBUGGING BOARD ###");
+    // Print first header:
+    System.out.print("  ");
+    for (int i = 0; i < size; i++) {
+      System.out.print(i + " ");
+    }
+    System.out.println(""); // New line to start
+    
+    for (int col=0; col<size; col++){
+      System.out.print(col + " ");
+      for (int row=0; row < size; row++) {
+        System.out.print(board[row][col].getDebuggingVisible() + " ");
+      }
+      System.out.println(""); // New line for next row
+    }
+  }
+
   public void generateBoard() {
     int minesLeft = numOfMines;
 

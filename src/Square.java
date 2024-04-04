@@ -75,6 +75,24 @@ public class Square {
     return "X";
   }
 
+  /*
+   * A method to return a debugging string of what the 
+   * square looks like
+   */
+  public String getDebuggingVisible() {
+    // Mine always returns as blank
+    if (isMine){
+      return "X";
+    }
+
+    if (flagged) {
+      return "F";
+    }
+
+    return "" + minesAround;
+
+  }
+
   public void setMine(boolean value) {
     isMine = value;
   }

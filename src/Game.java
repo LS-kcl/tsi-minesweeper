@@ -17,6 +17,7 @@ public class Game {
     // Placeholder while true
     while (running) {
       board.printBoard();
+      board.printDebuggingBoard();
 
       int col = -1;
       int row = -1;
