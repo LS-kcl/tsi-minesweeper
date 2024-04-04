@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -83,18 +84,13 @@ public class Board {
     for (int col=0; col<size; col++){
       for (int row=0; row < size; row++) {
         // If the square has a mine
-        if (board[col][row].getMine()){
-          // increment number values of all adjacent squares
-          for (int i = col-1; i <= col+1; i++) {
-            // Check bounds
-            if (i >= 0 && i < size){
-              for (int j = row-1; j <= row+1; j++) {
-                if (j >= 0 && j < size){
-                  int prevVal = board[i][j].getMinesAround();
-                  board[i][j].setMinesAround(prevVal+1);
-                }
-              }
-            }
+        if (board[row][col].getMine()){
+          // Get valid squares around this one
+          ArrayList<Coord> coords = getValidCoords(row, col);
+
+          for (Coord coord : coords){
+            int prevVal = board[coord.row][coord.col].getMinesAround();
+            board[coord.row][coord.col].setMinesAround(prevVal+1);
           }
         }
       }
@@ -177,17 +173,6 @@ public class Board {
 
     return false;
 
-    // Recursively run on adjacent squares for "waterfall effect"
-    // for (int i = col-1; i <= col+1; i++) {
-    //   // Check bounds
-    //   if (i >= 0 && i < size){
-    //     for (int j = row-1; j <= row+1; j++) {
-    //       if (j >= 0 && j < size){
-    //         revealCascade(i, j);
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   /*
@@ -209,32 +194,43 @@ public class Board {
     // Reveal square
     square.revealSquare();
 
-    int rowStart = Math.max(row-1, 0);
-    int rowFinish = Math.min(row + 1, size-1);
-    int colStart = Math.max(col - 1, 0);
-    int colfinish = Math.min( col + 1, size-1);
+    // Get valid squares around this one
+    ArrayList<Coord> coords = getValidCoords(row, col);
 
-    for (int i = rowStart; i <= rowFinish; i++ ) {
-        for (int j = colStart; j <= colfinish; j++ ) {
-          Square tarSquare = board[i][j];
-          if (tarSquare.getFlagged() || tarSquare.getMine()){
-            // do not reveal mines or flagged squares
-            // do nothing
-          }else if (tarSquare.getMinesAround() == 0){
-            // if no mines around, cascade around
-            revealCascade(i, j);
-          } else{
-            // This is just a regular number
-            // We reveal if the square is a number, but we don't cascade
-            tarSquare.revealSquare();
-          }
+    for (Coord coord : coords){
+      // Get relevant square
+      Square nearbySquare = board[coord.row][coord.col];
+      if (nearbySquare.getFlagged() || nearbySquare.getMine()){
+        // do not reveal mines or flagged squares
+        // do nothing
+      }else if (nearbySquare.getMinesAround() == 0){
+        // if no mines around, cascade around
+        revealCascade(coord.row, coord.col);
+      } else{
+        // This is just a regular number
+        // We reveal if the square is a number, but we don't cascade
+        nearbySquare.revealSquare();
+      }
+    }
+  }
+
+  private ArrayList<Coord> getValidCoords(int row, int col) {
+    int rowStart = Math.max(row-1, 0);
+    int rowFinish = Math.min(row+1, size-1);
+    int colStart = Math.max(col-1, 0);
+    int colfinish = Math.min(col+1, size-1);
+
+    ArrayList<Coord> validCoords = new ArrayList<>();
+    for (int i = rowStart; i <= rowFinish; i++) {
+        for (int j = colStart; j <= colfinish; j++) {
+          validCoords.add(new Coord(i, j));
         }
     }
+    return validCoords;
   }
 
   public void printSquaresRemaining(){
     System.out.println("There are " + squaresRemaining() + " squares left to find");
-
   }
 
   public int squaresRemaining(){
@@ -248,7 +244,6 @@ public class Board {
       }
     }
     return count;
-
   }
 
   public void flagSquare(int row, int col) {
