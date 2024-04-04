@@ -18,7 +18,7 @@ public class Board {
     board = new Square[size][size];
     for (int col=0; col<size; col++){
       for (int row=0; row < size; row++) {
-        board[col][row] = new Square();
+        board[row][col] = new Square();
       }
     }
   }
@@ -34,7 +34,7 @@ public class Board {
     for (int col=0; col<size; col++){
       System.out.print(col + " ");
       for (int row=0; row < size; row++) {
-        System.out.print(board[row][col].getVisible() + " ");
+        System.out.print(board[col][row].getVisible() + " ");
       }
       System.out.println(""); // New line for next row
     }
@@ -52,7 +52,7 @@ public class Board {
     for (int col=0; col<size; col++){
       System.out.print(col + " ");
       for (int row=0; row < size; row++) {
-        System.out.print(board[row][col].getDebuggingVisible() + " ");
+        System.out.print(board[col][row].getDebuggingVisible() + " ");
       }
       System.out.println(""); // New line for next row
     }
@@ -133,7 +133,7 @@ public class Board {
         int randRow = rng.nextInt(size);
         int randCol = rng.nextInt(size);
         
-        Square moveTo = board[randRow][randCol];
+        Square moveTo = board[randCol][randRow];
         // Only place mine if no existing mine
         if (!moveTo.getMine()){
           square.setMine(true);
@@ -204,7 +204,7 @@ public class Board {
 
     for (int i = rowStart; i <= rowFinish; i++ ) {
         for (int j = colStart; j <= colfinish; j++ ) {
-          Square tarSquare = board[i][j];
+          Square tarSquare = board[j][i];
           if (tarSquare.getFlagged() || tarSquare.getMine()){
             // do not reveal mines or flagged squares
             // do nothing

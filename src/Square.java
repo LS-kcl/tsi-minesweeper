@@ -58,13 +58,13 @@ public class Square {
    * board
    */
   public String getVisible() {
+    if (flagged) {
+      return "F";
+    }
+
     // Mine always returns as blank
     if (isMine){
       return "X";
-    }
-
-    if (flagged) {
-      return "F";
     }
 
     if (revealed){

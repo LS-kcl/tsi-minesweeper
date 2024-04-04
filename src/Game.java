@@ -28,8 +28,30 @@ public class Game {
         row = InputHelper.getIntInput();
       } while (!isWithinBounds(col, boardSize) || !isWithinBounds(row, boardSize));
 
-      board.revealSquares(col, row);
+      String option = "";
+      do{
+        System.out.println("What would you like to do for square "
+          + "col: " + col + ", "
+          + "row: " + row + "?"
+        );
+        System.out.println("F: Flag the square");
+        System.out.println("R: Reveal the square");
+        option = InputHelper.getStringInput();
+      } while (!option.equals("F") && !option.equals("R"));
 
+      switch (option) {
+        case "F":
+          board.flagSquare(row, col);
+          break;
+
+        case "R":
+          board.revealSquares(row, col);
+          break;
+
+        default:
+          System.out.println("Invalid input");
+          break;
+      }
     }
 
     System.out.println("You won!");
