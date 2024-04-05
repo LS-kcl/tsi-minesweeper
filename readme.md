@@ -19,13 +19,13 @@
 - User is prompted with board size
 - Program checks board size is within valid bounds
 - Number of mines is calculated as a factor of board size
-- Board is generated
+- com.kclls.github.Board is generated
 - User selects first square
-- Game runs protected check to ensure they do not lose first choice
-- Main loop of game begins:
-    - Board is printed
+- com.kclls.github.Game runs protected check to ensure they do not lose first choice
+- com.kclls.github.Main loop of game begins:
+    - com.kclls.github.Board is printed
     - User prompted to select square
-    - Board checks that square is valid
+    - com.kclls.github.Board checks that square is valid
     - If square is valid, user is prompted "C" to check square, and "F" to flag
         - Case 1: invalid input, user is sent back to dialog above
         - Case 2: User selects "C", check if mine using checkSquare(), board reveals or user loses
@@ -40,17 +40,17 @@ This is implemented using a recursive function:
 - Base case is when it's called on a non "0", it reveals the square and returns
 
 #### Classes
-Game:
+com.kclls.github.Game:
 - Attributes:
-    - board : Board
+    - board : com.kclls.github.Board
 - Methods
     - runGame() : void
 
-Board:
+com.kclls.github.Board:
 - Attributes:
     - size: int
     - numOfMines: int
-    - squares: Array<Square>[][]
+    - squares: Array<com.kclls.github.Square>[][]
 - Methods:
     - selectSquare() : void
     - printBoard() : void
@@ -60,7 +60,7 @@ Board:
     - flagSquare() : void
     - revealSquares() : void
 
-Square:
+com.kclls.github.Square:
 - Attributes:
     - flagged: boolean
     - isMine: boolean

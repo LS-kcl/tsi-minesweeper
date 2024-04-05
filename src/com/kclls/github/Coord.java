@@ -1,3 +1,5 @@
+package com.kclls.github;
+
 public class Coord {
   // Accessed publicly, but immutable
   public final int row;

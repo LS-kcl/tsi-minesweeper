@@ -1,3 +1,5 @@
+package com.kclls.github;
+
 import java.util.Scanner;
 public class InputHelper {
   private static Scanner input = new Scanner(System.in);

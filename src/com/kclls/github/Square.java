@@ -1,3 +1,5 @@
+package com.kclls.github;
+
 public class Square {
   private boolean flagged;
   private boolean isMine;

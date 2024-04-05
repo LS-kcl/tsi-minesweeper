@@ -1,4 +1,4 @@
-
+package com.kclls.github;
 
 public class Game {
   Board board;
@@ -14,7 +14,9 @@ public class Game {
     while (board.squaresRemaining() > 0 && hitMine == false) {
       board.printBoard();
       board.printSquaresRemaining();
-      board.printDebuggingBoard();
+
+      // System.out.println("### DEBUGGING BOARD ###");
+      // board.printBoardSolution();
 
       Coord coords = takeRowAndColInput();
       performAction(coords);
@@ -54,6 +56,7 @@ public class Game {
             hitMine = board.revealSquares(c.row, c.col);
             if (hitMine){
               System.out.printf("There was a mine at (%s,%s)%n", c.row, c.col);
+              board.printBoardSolution();
             }
           }
           break;
@@ -67,12 +70,19 @@ public class Game {
   public Coord takeRowAndColInput() {
       int row = -1;
       int col = -1;
+      boolean validInput = false;
       do{
-        System.out.println("Enter the row of the square you would like to select");
+        System.out.println("Enter row of the square to select");
         row = InputHelper.getIntInput();
-        System.out.println("Enter the column of the square you would like to select");
+        System.out.println("Enter column of the square to select");
         col = InputHelper.getIntInput();
-      } while (!isWithinBounds(col, boardSize) || !isWithinBounds(row, boardSize));
+
+        if (!isWithinBounds(col, boardSize) || !isWithinBounds(row, boardSize)){
+          System.out.println("");
+        }else{
+          validInput = true;
+        }
+      } while (!validInput);
 
     return new Coord(row, col);
   }

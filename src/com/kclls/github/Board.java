@@ -1,5 +1,6 @@
+package com.kclls.github;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -40,8 +41,7 @@ public class Board {
     }
   }
 
-  public void printDebuggingBoard() {
-    System.out.println("### DEBUGGING BOARD ###");
+  public void printBoardSolution() {
     // Print first header:
     System.out.print("  ");
     for (int i = 0; i < size; i++) {
@@ -182,7 +182,7 @@ public class Board {
   public void revealCascade(int row, int col) {
     Square square = board[row][col];
     // Base cases, we stop if:
-    // square is already revealed
+    // square is already revealed1
     // square is a mine
     // square is flagged
 
