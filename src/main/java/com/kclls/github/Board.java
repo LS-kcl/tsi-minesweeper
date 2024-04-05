@@ -9,6 +9,11 @@ public class Board {
   private Square[][] board;
   private Random rng = new Random();
 
+  public static final String ANSI_RED = "\u001B[31m";
+  public static final String ANSI_GREEN = "\u001B[32m";
+  public static final String ANSI_YELLOW = "\u001B[33m";
+  public static final String ANSI_RESET = "\u001B[0m";
+
   public Board(int size) {
     this.size = size;
 
@@ -28,12 +33,16 @@ public class Board {
     // Print first header:
     System.out.print("  ");
     for (int i = 0; i < size; i++) {
+      System.out.print(ANSI_YELLOW);
       System.out.print(i + " ");
+      System.out.print(ANSI_RESET);
     }
     System.out.println(""); // New line to start
     
     for (int col=0; col<size; col++){
+      System.out.print(ANSI_YELLOW);
       System.out.print(col + " ");
+      System.out.print(ANSI_RESET);
       for (int row=0; row < size; row++) {
         System.out.print(board[col][row].getVisible() + " ");
       }
@@ -45,12 +54,16 @@ public class Board {
     // Print first header:
     System.out.print("  ");
     for (int i = 0; i < size; i++) {
+      System.out.print(ANSI_YELLOW);
       System.out.print(i + " ");
+      System.out.print(ANSI_RESET);
     }
     System.out.println(""); // New line to start
     
     for (int col=0; col<size; col++){
+      System.out.print(ANSI_YELLOW);
       System.out.print(col + " ");
+      System.out.print(ANSI_RESET);
       for (int row=0; row < size; row++) {
         System.out.print(board[col][row].getDebuggingVisible() + " ");
       }
@@ -168,6 +181,11 @@ public class Board {
       return true;
     }
 
+    // Don't reveal a flag
+    if (square.getFlagged()) {
+      return false; // False as no mine found
+    }
+
     // Reveal square in cascade
     revealCascade(row, col);
 
@@ -186,8 +204,8 @@ public class Board {
     // square is a mine
     // square is flagged
 
-    // Do not execute on squares already revealed
-    if (square.getRevealed()){
+    // Do not execute on squares already revealed or flagged
+    if (square.getRevealed() || square.getFlagged()){
       return;
     }
 
