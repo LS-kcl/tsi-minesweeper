@@ -28,7 +28,7 @@ public class CoordTest {
     @Test
     public void stringOutputsCorrectly() {
         String expected = "(1, 2)";
-        Assertions.assertEquals(expected.equals(coord.getStrVersion()), "Coord is not returning the correct string");
+        Assertions.assertTrue(expected.equals(coord.getStrVersion()), "Coord is not returning the correct string");
     }
 
     /*
