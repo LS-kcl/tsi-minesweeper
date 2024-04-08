@@ -1,13 +1,30 @@
 package com.kclls.github;
 
+import java.io.InputStream;
 import java.util.Scanner;
 public class InputHelper {
-  private static Scanner input = new Scanner(System.in);
-  public static String getStringInput(){
+  private Scanner input;
+
+
+  /*
+   * Default constructor which uses input stream
+   */
+  public InputHelper() {
+    input = new Scanner(System.in);
+  }
+  
+  /*
+   * Overloaded constructor allowing for mock input for testing
+   */
+   public InputHelper(InputStream in) {
+    input = new Scanner(in);
+   } 
+
+  public String getStringInput(){
      return input.nextLine();
   }
 
-  public static int getIntInput(){
+  public int getIntInput(){
     // Loop until valid number to return
     while (true) {
             String str = input.nextLine();

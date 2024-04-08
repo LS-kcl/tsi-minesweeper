@@ -5,6 +5,7 @@ public class Game {
   int boardSize;
   boolean hitMine = false;
   boolean firstMoveMade = false;
+  InputHelper input = new InputHelper();
 
   public void run() {
     System.out.println("Welcome to Minesweeper!");
@@ -39,7 +40,7 @@ public class Game {
         System.out.printf("What would you like to do for square (%s,%s)%n", c.row, c.col);
         System.out.println("F: Flag the square");
         System.out.println("R: Reveal the square");
-        option = InputHelper.getStringInput();
+        option = input.getStringInput();
       } while (!option.equals("F") && !option.equals("R"));
 
       switch (option) {
@@ -73,9 +74,9 @@ public class Game {
       boolean validInput = false;
       do{
         System.out.println("Enter row of the square to select");
-        row = InputHelper.getIntInput();
+        row = input.getIntInput();
         System.out.println("Enter column of the square to select");
-        col = InputHelper.getIntInput();
+        col = input.getIntInput();
 
         if (!isWithinBounds(col, boardSize) || !isWithinBounds(row, boardSize)){
           System.out.println("");
@@ -90,7 +91,7 @@ public class Game {
   public void initialiseBoard() {
     do{
       System.out.println("Please enter a board size between 5 and 9");
-      boardSize = InputHelper.getIntInput();
+      boardSize = input.getIntInput();
     }while(boardSize < 5 || boardSize > 9);
 
     board = new Board(boardSize);
