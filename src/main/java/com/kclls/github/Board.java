@@ -120,22 +120,6 @@ public class Board {
   }
 
   /*
-   * Checks if square is a mine, and returns true if it is
-   */
-  public boolean checkSquare(int row, int col) {
-    Square square = board[row][col];
-    
-    // Do nothing if flagged
-    if (square.getFlagged()){
-      System.out.println("You cannot check a square you have flagged!");
-      return false;
-    }
-
-    // Otherwise check and reveal
-    return square.checkSquare();
-  }
-
-  /*
    * Moves the mine that would be hit to another square
    */
   public void safeRevealSquares(int row, int col) {
@@ -183,6 +167,7 @@ public class Board {
 
     // Don't reveal a flag
     if (square.getFlagged()) {
+      System.out.println("You cannot check a square you have flagged!");
       return false; // False as no mine found
     }
 
@@ -197,7 +182,7 @@ public class Board {
    * Will reveal the current square, and then cascade try
    * to cascade to other cells nearby
    */
-  public void revealCascade(int row, int col) {
+  private void revealCascade(int row, int col) {
     Square square = board[row][col];
     // Base cases, we stop if:
     // square is already revealed1
@@ -264,6 +249,26 @@ public class Board {
     return count;
   }
 
+  public void placeMine(int row, int col) {
+    board[row][col].setMine(true);
+  }
+
+  public boolean getMine(int row, int col) {
+    return board[row][col].getMine();
+  }
+
+  public int getMinesAround(int row, int col) {
+    return board[row][col].getMinesAround();
+  }
+
+  public boolean getFlagged(int row, int col) {
+    return board[row][col].getFlagged();
+  }
+
+  public boolean getRevealed(int row, int col) {
+    return board[row][col].getRevealed();
+  }
+  
   public void flagSquare(int row, int col) {
     Square square = board[row][col];
     square.toggleFlag();

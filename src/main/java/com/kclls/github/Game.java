@@ -15,8 +15,8 @@ public class Game {
       board.printBoard();
       board.printSquaresRemaining();
 
-      // System.out.println("### DEBUGGING BOARD ###");
-      // board.printBoardSolution();
+      System.out.println("### DEBUGGING BOARD ###");
+      board.printBoardSolution();
 
       Coord coords = takeRowAndColInput();
       performAction(coords);
