@@ -1,26 +1,27 @@
 package com.kclls.github;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CoordTest {
     Coord coord;
+
     @BeforeAll
-    public void setUp (){
-      coord = new Coord(1, 2);
+    public void setUp() {
+        coord = new Coord(1, 2);
     }
 
     @Test
-    public void canAccessCoordColDirectly(){
+    public void canAccessCoordColDirectly() {
         int expected = 2;
         Assertions.assertEquals(expected, coord.col, "Must be able to access Coord col");
     }
 
     @Test
-    public void canAccessCoordRowDirectly(){
+    public void canAccessCoordRowDirectly() {
         int expected = 1;
         Assertions.assertEquals(expected, coord.row, "Must be able to access Coord row");
     }
@@ -28,7 +29,7 @@ public class CoordTest {
     @Test
     public void stringOutputsCorrectly() {
         String expected = "(1, 2)";
-        Assertions.assertTrue(expected.equals(coord.getStrVersion()), "Coord is not returning the correct string");
+        Assertions.assertEquals(expected, coord.getStrVersion(), "Coord is not returning the correct string");
     }
 
     /*

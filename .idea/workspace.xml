@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a07756f4-3d7d-4ed2-860a-610b459e3956" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kclls/github/CoordTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kclls/github/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kclls/github/Coord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Coord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kclls/github/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kclls/github/InputHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/InputHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kclls/github/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kclls/github/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kclls/github/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kclls/github/Coord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Coord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kclls/github/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kclls/github/InputHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/InputHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kclls/github/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kclls/github/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/kclls/github/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kclls/github/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/kclls/github/CoordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kclls/github/CoordTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/kclls/github/InputHelperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kclls/github/InputHelperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/kclls/github/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kclls/github/SquareTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,14 +51,22 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.All in tsi-minesweeper.executor": "Run",
+    "JUnit.BoardTest.executor": "Run",
+    "JUnit.CoordTest (1).executor": "Run",
+    "JUnit.CoordTest.canAccessCoordColDirectly.executor": "Run",
     "JUnit.CoordTest.executor": "Run",
+    "JUnit.InputHelperTest.executor": "Run",
+    "JUnit.SquareTest.executor": "Run",
+    "JUnit.com.kclls.github in tsi-minesweeper.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -63,15 +75,29 @@
       <recent name="com.kclls.github" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CoordTest (1)">
+  <component name="RunManager" selected="JUnit.com.kclls.github in tsi-minesweeper">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kclls.github.Main" />
       <module name="tsi-minesweeper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kclls.github.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoordTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in tsi-minesweeper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tsi-minesweeper" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="tsi-minesweeper" />
       <extension name="coverage">
         <pattern>
@@ -80,32 +106,48 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.kclls.github" />
-      <option name="MAIN_CLASS_NAME" value="com.kclls.github.CoordTest" />
+      <option name="MAIN_CLASS_NAME" value="com.kclls.github.BoardTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InputHelperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="tsi-minesweeper" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value=".*" />
+          <option name="PATTERN" value="com.kclls.github.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CoordTest" />
+      <option name="PACKAGE_NAME" value="com.kclls.github" />
+      <option name="MAIN_CLASS_NAME" value="com.kclls.github.InputHelperTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.kclls.github in tsi-minesweeper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tsi-minesweeper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kclls.github.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.kclls.github" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CoordTest (1)" />
-        <item itemvalue="JUnit.CoordTest" />
+        <item itemvalue="JUnit.com.kclls.github in tsi-minesweeper" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.InputHelperTest" />
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="JUnit.All in tsi-minesweeper" />
       </list>
     </recent_temporary>
   </component>
